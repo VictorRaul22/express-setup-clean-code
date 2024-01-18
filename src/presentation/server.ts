@@ -11,6 +11,9 @@ import httpStatus from "http-status";
 
 import { winstonLoggerHttp } from "@/presentation/middleware/WinstonLoggerHttp";
 import { WinstonLogger } from "@/modules/Shared/infrastructure/WinstonLogger";
+import { InversifyExpressServer } from "inversify-express-utils";
+import { container } from "./dependency-injection/container";
+
 export class Server {
   private readonly express: Express;
   readonly port: string;
@@ -23,29 +26,44 @@ export class Server {
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
     this.express.use(cors());
+    this.express.use(winstonLoggerHttp());
   }
 
   route(registerRouter: (app: Router) => void) {
     const router = Router();
-    router.use(winstonLoggerHttp());
     this.express.use(router);
-    router.get("/", (_req: Request, res: Response) => {
-      res.send("hello world");
-    });
     registerRouter(router);
-    router.use(
-      (err: Error, _req: Request, res: Response, _next: NextFunction) => {
-        this.logger.error(err.message + err.stack);
-        res
-          .status(httpStatus.INTERNAL_SERVER_ERROR as number)
-          .send("Internal Server Error");
-      }
+  }
+
+  buildInversifyServer() {
+    const inversifyExpress = new InversifyExpressServer(
+      container,
+      null,
+      null,
+      this.express
     );
+    inversifyExpress.setErrorConfig((app) => {
+      app.use(
+        (
+          err: Error,
+          _req: Request,
+          res: Response,
+          _next: NextFunction
+        ) => {
+          this.logger.error(err.message + err.stack);
+          res
+            .status(httpStatus.INTERNAL_SERVER_ERROR as number)
+            .send("Internal Server Error");
+        }
+      );
+    });
+    return inversifyExpress.build();
   }
 
   async listen(): Promise<void> {
+    const server = this.buildInversifyServer();
     await new Promise<void>((resolve) => {
-      this.httpServer = this.express.listen(this.port, () => {
+      this.httpServer = server.listen(this.port, () => {
         console.log("Starting Server on port " + this.port);
         resolve();
       });

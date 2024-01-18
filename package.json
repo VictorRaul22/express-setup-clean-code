@@ -28,13 +28,17 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@types/prettyjson": "^0.0.33",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "env-var": "^7.4.1",
     "express": "^4.18.2",
     "express-winston": "^4.2.0",
     "http-status": "^1.7.3",
+    "inversify": "^6.0.2",
+    "inversify-express-utils": "^6.4.6",
     "module-alias": "^2.2.3",
+    "prettyjson": "^1.2.5",
     "reflect-metadata": "^0.2.1",
     "winston": "^3.11.0",
     "winston-daily-rotate-file": "^4.7.1"

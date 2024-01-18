@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Server } from "@/presentation/server";
 import { config } from "@/modules/Shared/infrastructure/config";
-import { routeApp } from "@/presentation/routes";
+import "@/presentation/controllers";
 // import { TypeOrmDataBase } from "@/config/db";
 export class BackendApp {
   server: Server;
@@ -12,7 +12,7 @@ export class BackendApp {
   }
 
   async start() {
-    this.server.route(routeApp);
+    // this.server.route(routeApp);
     // await this.db.start();
     await this.server.listen();
   }
