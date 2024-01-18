@@ -3,8 +3,9 @@ import expressWinston from "express-winston";
 import { config } from "@/modules/Shared/infrastructure/config";
 import { type Handler } from "express";
 
-export const WinstonLoggerHttp = (): Handler => {
+export const winstonLoggerHttp = (): Handler => {
   const loggerHttpMiddleware = expressWinston.logger({
+    level: "debug",
     transports: transportsDynamic(),
     expressFormat: true,
     colorize: false,
@@ -35,7 +36,6 @@ const transportsDynamic = (): any[] => {
 
   transportsArr.push(
     new winston.transports.DailyRotateFile({
-      level: "debug",
       filename: "logs/debug-%DATE%.log",
       datePattern: "YYYY-MM-DD",
       maxFiles: "14d",

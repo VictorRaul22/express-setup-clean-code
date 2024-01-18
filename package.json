@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd  -r tsconfig-paths/register --respawn  src/presentation/index.ts",
+    "build": "tsc -p .",
+    "start": "node -r module-alias/register ./dist/presentation/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.0",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^9.1.0",
@@ -22,12 +28,14 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@types/express": "^4.17.21",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "env-var": "^7.4.1",
     "express": "^4.18.2",
     "express-winston": "^4.2.0",
+    "http-status": "^1.7.3",
     "module-alias": "^2.2.3",
+    "reflect-metadata": "^0.2.1",
     "winston": "^3.11.0",
     "winston-daily-rotate-file": "^4.7.1"
   },
