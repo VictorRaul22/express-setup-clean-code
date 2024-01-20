@@ -1,6 +1,6 @@
 import { config } from "./config";
-import winston, { type Logger as LoggerType } from "winston";
 import "winston-daily-rotate-file";
+import winston, { type Logger as LoggerType } from "winston";
 import { type Logger } from "../domain/Logger";
 
 const { combine, colorize, timestamp } = winston.format;

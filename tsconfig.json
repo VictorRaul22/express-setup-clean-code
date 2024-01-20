@@ -10,7 +10,6 @@
     "strict": true,
     "allowUnreachableCode": false,
     "incremental": true,
-
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,

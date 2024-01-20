@@ -9,6 +9,9 @@
     "build": "tsc -p .",
     "start": "node -r module-alias/register ./dist/presentation/index.js"
   },
+  "engines": {
+    "node": "20.10.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -29,6 +32,9 @@
   },
   "dependencies": {
     "@types/prettyjson": "^0.0.33",
+    "@types/uuid": "^9.0.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "env-var": "^7.4.1",
@@ -40,6 +46,7 @@
     "module-alias": "^2.2.3",
     "prettyjson": "^1.2.5",
     "reflect-metadata": "^0.2.1",
+    "uuid": "^9.0.1",
     "winston": "^3.11.0",
     "winston-daily-rotate-file": "^4.7.1"
   },

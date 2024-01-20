@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { Server } from "@/presentation/server";
 import { config } from "@/modules/Shared/infrastructure/config";
 import "@/presentation/controllers";
+
 // import { TypeOrmDataBase } from "@/config/db";
 export class BackendApp {
   server: Server;

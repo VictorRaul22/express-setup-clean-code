@@ -1,28 +1,18 @@
-import express, {
-  type Express,
-  type Request,
-  type Response,
-  type NextFunction,
-  Router,
-} from "express";
+import express, { type Express, Router } from "express";
 import { type Server as HttpServer } from "http";
 import cors from "cors";
-import httpStatus from "http-status";
-
-import { winstonLoggerHttp } from "@/presentation/middleware/WinstonLoggerHttp";
-import { WinstonLogger } from "@/modules/Shared/infrastructure/WinstonLogger";
+import { error } from "@/presentation/middleware/error";
 import { InversifyExpressServer } from "inversify-express-utils";
 import { container } from "./dependency-injection/container";
+import { winstonLoggerHttp } from "./middleware/WinstonLoggerHttp";
 
 export class Server {
   private readonly express: Express;
   readonly port: string;
   httpServer?: HttpServer;
-  logger: WinstonLogger;
   constructor(port: string) {
     this.port = port;
     this.express = express();
-    this.logger = new WinstonLogger();
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
     this.express.use(cors());
@@ -42,20 +32,10 @@ export class Server {
       null,
       this.express
     );
+    // inversifyExpress.setConfig((app) => {});
+
     inversifyExpress.setErrorConfig((app) => {
-      app.use(
-        (
-          err: Error,
-          _req: Request,
-          res: Response,
-          _next: NextFunction
-        ) => {
-          this.logger.error(err.message + err.stack);
-          res
-            .status(httpStatus.INTERNAL_SERVER_ERROR as number)
-            .send("Internal Server Error");
-        }
-      );
+      app.use(error);
     });
     return inversifyExpress.build();
   }
