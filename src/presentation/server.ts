@@ -32,7 +32,6 @@ export class Server {
       null,
       this.express
     );
-    // inversifyExpress.setConfig((app) => {});
 
     inversifyExpress.setErrorConfig((app) => {
       app.use(error);

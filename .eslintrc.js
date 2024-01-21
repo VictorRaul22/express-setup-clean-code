@@ -3,6 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  ignorePatterns: ["**/.eslintrc.js"],
   extends: ["standard-with-typescript", "prettier"],
   overrides: [
     {
@@ -21,6 +22,7 @@ module.exports = {
     project: "./tsconfig.json",
     tsconfigRootDir: __dirname,
   },
+
   rules: {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-namespace": "off",

@@ -36,7 +36,7 @@ export class BaseController extends BaseHttpController {
   }
 
   protected override created<
-    T = ApiErrorDetailResponseType | ApiErrorResponseType
+    T = ApiErrorDetailResponseType | ApiErrorResponseType,
   >(
     location: string | URL,
     content?: T

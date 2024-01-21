@@ -1,6 +1,6 @@
-.eslintrc.js
-ios/
-android/
-*.config.js
-tsconfig-path-bootstrap.js
+ios
+android
+logs
+node_modules
+.husky
 scripts
