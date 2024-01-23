@@ -5,8 +5,12 @@ import { TypeOrmUserRepository } from "@/modules/Users/infrastructure/persistenc
 import { CreateUserUseCase } from "@/modules/Users/application/Create/CreateUserUseCase";
 import { SearchAllUseCase } from "@/modules/Users/application/SearchAll/SearchAllUseCase";
 import { SearchUserByIdUseCase } from "@/modules/Users/application/SearchBy/SearchById";
+import { type Logger } from "@/modules/Shared/domain/Logger";
+import { WinstonLogger } from "@/modules/Shared/infrastructure/WinstonLogger";
 
 const container = new Container({});
+container.bind<Logger>(TYPE.Logger).to(WinstonLogger);
+
 container
   .bind<UserRepository>(TYPE.UserRepository)
   .to(TypeOrmUserRepository);

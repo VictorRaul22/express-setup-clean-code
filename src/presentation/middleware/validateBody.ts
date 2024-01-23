@@ -19,6 +19,7 @@ export function validateBody<T extends object>(
     } catch (error) {
       if (error instanceof ValidateException) {
         next(new RequestValidateException(error.fields));
+        return;
       }
       next(error);
     }

@@ -10,5 +10,6 @@ export interface Config {
     DB_PASSWORD: string;
     DB_DEBUG: boolean;
   };
-  DEBUG: boolean;
+  DEBUG_LOGGER: boolean;
+  HTTP_LOGGER: boolean;
 }

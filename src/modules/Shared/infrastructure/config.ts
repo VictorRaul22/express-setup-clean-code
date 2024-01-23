@@ -17,5 +17,6 @@ export const config: Config = {
     DB_PASSWORD: env.get("DB_PASSWORD").required().asString(),
     DB_DEBUG: env.get("DB_DEBUG").asBoolStrict() ?? false,
   },
-  DEBUG: env.get("DB_DEBUG").asBoolStrict() ?? false,
+  DEBUG_LOGGER: env.get("DEBUG_LOGGER").asBoolStrict() ?? false,
+  HTTP_LOGGER: env.get("HTTP_LOGGER").asBoolStrict() ?? false,
 };

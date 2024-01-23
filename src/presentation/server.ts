@@ -8,9 +8,11 @@ import { winstonLoggerHttp } from "./middleware/WinstonLoggerHttp";
 
 export class Server {
   private readonly express: Express;
-  readonly port: string;
+  private readonly port: string;
+  private readonly rootPath: string;
   httpServer?: HttpServer;
-  constructor(port: string) {
+  constructor(port: string, rootPath: string) {
+    this.rootPath = rootPath;
     this.port = port;
     this.express = express();
     this.express.use(express.json());
@@ -22,6 +24,7 @@ export class Server {
   route(registerRouter: (app: Router) => void) {
     const router = Router();
     this.express.use(router);
+
     registerRouter(router);
   }
 
@@ -29,7 +32,9 @@ export class Server {
     const inversifyExpress = new InversifyExpressServer(
       container,
       null,
-      null,
+      {
+        rootPath: this.rootPath,
+      },
       this.express
     );
 
