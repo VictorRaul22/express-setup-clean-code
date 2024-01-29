@@ -1,6 +1,6 @@
 <div align="center">
   <h3>
-  Proyecto Inicial Express (Clean code)
+  Proyecto Inicial Express (Clean Architecture)
   </h3>
   <div align="center">
       <a href="#-getting-started">
@@ -15,7 +15,7 @@
           Licencia
       </a>   
   </div>
-<p>Crea proyectos express con una configuración inicial (Clean code)</p>
+<p>Crea proyectos express con una configuración inicial (Clean Architecture)</p>
 </div>
 
 ## 🚀 Getting Started
