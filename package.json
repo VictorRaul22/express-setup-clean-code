@@ -21,7 +21,11 @@
     "typescript",
     "express",
     "clean-code",
-    "inversify"
+    "inversify",
+    "husky",
+    "winston",
+    "prettier",
+    "eslint"
   ],
   "author": "",
   "license": "ISC",
